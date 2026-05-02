@@ -1,0 +1,7 @@
+<h1>OWASP Dashboard</h1>
+<p>เลือก Lab ที่คุณต้องการเล่น:</p>
+<ul>
+    {% for lab in labs %}
+        <li><a href="{{ lab.url }}">{{ lab.name }}</a></li>
+    {% endfor %}
+</ul>

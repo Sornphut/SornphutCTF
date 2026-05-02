@@ -1,0 +1,5 @@
+admin:admin123
+test:test123
+'--
+<script>alert('XSS!')</script>
+http://127.0.0.1:8000/lab5/?id=0
