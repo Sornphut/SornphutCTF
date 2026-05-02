@@ -1,5 +1,3 @@
-📄 ตัวอย่าง README.md
-markdown
 # SornphutCTF / FirstWeb
 
 โปรเจกต์ Django สำหรับการเรียนรู้และสร้าง Web Application เบื้องต้น พร้อม Labs ด้าน Security (SQL Injection, XSS, CSRF, File Upload, IDOR)
@@ -8,14 +6,12 @@ markdown
 
 ## 🚀 การเริ่มต้นใช้งาน
 
-### 1. สร้าง Virtual Environment
-```bash
+### 1. สร้าง Virtual Environment bash
 virtualenv venv
 .\venv\Scripts\activate
-2. ติดตั้ง Django และ Pillow
+2. ติดตั้ง Django
 bash
 pip install Django
-pip install pillow
 3. สร้าง Project และ App
 bash
 django-admin startproject firstweb
@@ -37,3 +33,14 @@ bash
 python manage.py runserver
 เปิดเบราว์เซอร์ไปที่:
 http://127.0.0.1:8000/
+
+🧪 Labs ที่มีในโปรเจกต์
+Lab1: SQL Injection (Vulnerable & Secure)
+
+Lab2: Cross-Site Scripting (XSS)
+
+Lab3: Cross-Site Request Forgery (CSRF)
+
+Lab4: File Upload Vulnerability
+
+Lab5: Insecure Direct Object Reference (IDOR)
