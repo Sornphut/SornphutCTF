@@ -1,8 +1,0 @@
-<h1>Lab2: XSS Secure</h1>
-<form method="post">
-    {% csrf_token %}
-    Comment: <input name="comment"><br>
-    <button type="submit">Submit</button>
-</form>
-
-<p>คุณพิมพ์ว่า: {{ comment }}</p>

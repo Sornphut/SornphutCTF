@@ -1,0 +1,6 @@
+<h2>🏆 Leaderboard</h2>
+<ol>
+{% for entry in leaderboard %}
+  <li>{{ entry.user__username }} – {{ entry.total }} คะแนน</li>
+{% endfor %}
+</ol>

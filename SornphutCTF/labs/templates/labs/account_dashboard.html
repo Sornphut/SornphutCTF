@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Account Dashboard</title>
+</head>
+<body>
+  <h1>บัญชีของคุณ</h1>
+  <p>ชื่อผู้ใช้: {{ profile.user.username }}</p>
+  <p>ยอดเงินคงเหลือ: {{ profile.balance }} บาท</p>
+
+  <a href="{% url 'transfer' %}" class="btn btn-danger">โอนเงิน (Vulnerable)</a>
+  <a href="{% url 'csrf_lab_secure' %}" class="btn btn-success">โอนเงิน (Secure)</a>
+</body>
+</html>

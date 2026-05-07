@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab3: Cross-Site Request Forgery (CSRF)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="text-primary">Lab3: Cross-Site Request Forgery (CSRF)</h1>
+  <p class="lead">ช่องโหว่ที่เกิดจากการที่ผู้ใช้ถูกหลอกให้ส่ง request โดยไม่รู้ตัว ทำให้ attacker สามารถทำ action แทนผู้ใช้ได้</p>
+
+  <h3>🎯 เป้าหมาย</h3>
+  <ul>
+    <li>เข้าใจหลักการของ CSRF</li>
+    <li>ทดลองโจมตีด้วยการสร้างหน้า HTML ปลอมที่ auto-submit ฟอร์ม</li>
+    <li>เรียนรู้วิธีป้องกันด้วยการใช้ CSRF token</li>
+  </ul>
+
+  <h3>🧠 ขั้นตอนการทำงาน</h3>
+  <ol>
+    <li>ผู้ใช้ login เข้าสู่ระบบ</li>
+    <li>มีฟอร์มที่ไม่มี CSRF token เช่น <code>&lt;form method="post"&gt;</code></li>
+    <li>Attacker สร้างหน้าเว็บปลอมที่ auto-submit ฟอร์มนี้ → ระบบทำงานโดยที่ผู้ใช้ไม่รู้ตัว</li>
+  </ol>
+
+  <h3>🔒 Secure Version</h3>
+  <p>ใช้ <code>{% csrf_token %}</code> ใน Django template เพื่อป้องกันการโจมตี</p>
+
+  <a href="{% url 'lab3' %}" class="btn btn-danger">ทดลองโจมตี (Vulnerable)</a>
+  <a href="{% url 'lab3-secure' %}" class="btn btn-success">ดูวิธีป้องกัน (Secure)</a>
+
+  <!-- ฟอร์มสำหรับ submit flag -->
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <input type="text" name="flag" placeholder="Enter your flag" class="form-control mb-2">
+    <button type="submit" class="btn btn-primary">Submit Flag</button>
+  </form>
+
+  <!-- แสดงข้อความตอบกลับ -->
+  {% if message %}
+    {% if "ถูกต้อง" in message %}
+      <div class="alert alert-success mt-3">
+        {{ message }}
+      </div>
+    {% else %}
+      <div class="alert alert-danger mt-3">
+        {{ message }}
+      </div>
+    {% endif %}
+  {% endif %}
+
+</div>
+</body>
+</html>

@@ -2,15 +2,15 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>Lab3: CSRF (Secure)</title>
+  <title>Lab3: CSRF (Vulnerable)</title>
 </head>
 <body>
-  <h1>Lab3: CSRF (Secure)</h1>
+  <h1>Lab3: CSRF (Vulnerable)</h1>
   <p>ชื่อผู้ใช้: {{ profile.user.username }}</p>
   <p>ยอดเงินคงเหลือ: {{ profile.balance }} บาท</p>
 
   <form method="post">
-    {% csrf_token %}
+    <!-- ❌ ไม่มี csrf_token -->
     <label>เลือกบัญชีปลายทาง:</label>
     <select name="to_user">
       {% for u in users %}
@@ -25,6 +25,11 @@
 
   {% if message %}
     <p>{{ message }}</p>
+
+    <!-- โชว์ flag อย่างเดียว -->
+    <div class="alert alert-info mt-3">
+      FLAG{CSRF_VULNERABLE_SUCCESS}
+    </div>
   {% endif %}
 </body>
 </html>

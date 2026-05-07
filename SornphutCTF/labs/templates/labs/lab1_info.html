@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab1: SQL Injection</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <h1 class="text-danger">Lab1: SQL Injection</h1>
+  <p class="lead">ช่องโหว่ที่เกิดจากการนำข้อมูลจากผู้ใช้ไปต่อกับคำสั่ง SQL โดยไม่ตรวจสอบความปลอดภัย</p>
+
+  <h3>🎯 เป้าหมาย</h3>
+  <ul>
+    <li>เข้าใจหลักการของ SQL Injection</li>
+    <li>ทดลองโจมตีระบบ Login ที่ไม่ใช้ Prepared Statement</li>
+    <li>เรียนรู้วิธีป้องกันด้วย Parameterized Query</li>
+  </ul>
+
+  <h3>🧠 ขั้นตอนการทำงาน</h3>
+  <ol>
+    <li>กรอก username และ password ในฟอร์ม</li>
+    <li>ระบบจะ query ข้อมูลจากฐานข้อมูลโดยตรง</li>
+    <li>หากใช้ payload เช่น <code>' OR '1'='1</code> จะ bypass การตรวจสอบ</li>
+  </ol>
+
+  <h3>🔒 Secure Version</h3>
+  <p>ใช้ Django ORM หรือ Prepared Statement เพื่อป้องกันการต่อ string โดยตรง</p>
+
+  <a href="{% url 'lab1' %}" class="btn btn-danger">ทดลองโจมตี (Vulnerable)</a>
+  <a href="{% url 'lab1-secure' %}" class="btn btn-success">ดูวิธีป้องกัน (Secure)</a>
+
+  <form method="post" class="mt-3">
+    {% csrf_token %}
+    <input type="text" name="flag" placeholder="Enter your flag" class="form-control mb-2">
+    <button type="submit" class="btn btn-primary">Submit Flag</button>
+  </form>
+
+</div>
+</body>
+</html>

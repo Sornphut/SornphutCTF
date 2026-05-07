@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab2: XSS Secure</title>
+</head>
+<body>
+  <h1 class="text-success">Lab2: XSS (Secure)</h1>
+  <form method="post">
+    {% csrf_token %}
+    <input type="text" name="comment" placeholder="Enter comment">
+    <button type="submit">Submit</button>
+  </form>
+
+  {% for c in comments %}
+    <p>{{ c }}</p>  <!-- ✅ Django auto-escape → script ไม่รัน -->
+  {% endfor %}
+
+  {% if comments %}
+    <!-- โชว์ flag เมื่อมีการ submit comment -->
+    <div class="alert alert-info mt-3">
+      FLAG{XSS_SECURE_SUCCESS}
+      <br>
+      <a href="/submit_flag/2?flag=FLAG{XSS_SECURE_SUCCESS}" class="btn btn-primary mt-2">
+        Submit Flag
+      </a>
+    </div>
+  {% endif %}
+</body>
+</html>
